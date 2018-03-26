@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{css/bootstrap.css}"/>
+  <script th:src="@{js/jquery.js}"></script>
+  <script th:src="@{js/task3.js}"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>输入学生信息</h3>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="name">姓名:</label>
+            <div class="col-md-5">
+              <input class="form-control" type="text" id="name"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="age">年龄:</label>
+            <div class="col-md-5">
+              <input type="text" id="age" class="form-control"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">性别:</label>
+            <div class="col-md-5">
+              <label class="radio-inline">
+                <input type="radio" name="sex" id="sex1" value="0" checked/>
+                男
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="sex" id="sex2" value="1"/>
+                女
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">爱好:</label>
+            <div class="col-md-6">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="hobby" value="0"/>
+                体育
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="hobby" value="1"/>
+                音乐
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="hobby" value="2"/>
+                旅游
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="hobby" value="3"/>
+                游戏
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="college">学院:</label>
+            <div class="col-md-6">
+              <select id="college" class="form-control" onchange="majorChange()">
+                <option value="0">管理学院</option>
+                <option class="1">机械学院</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="major">专业</label>
+            <div class="col-md-6">
+              <select id="major" class="form-control">
+                <option>-------</option>
+                <option>-------</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" onclick="addStudent()">添加学生信息</button>
+            <button class="btn btn-warning">重置</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>爱好</th>
+            <th>学院</th>
+            <th>专业</th>
+            <th>修改与删除</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!--/*@thymesVar id="student" type="issf.zyp.task3.domain.Student"*/-->
+          <!--/*@thymesVar id="studentList" type="java.util.ArrayList"*/-->
+          <tr th:each="student : ${studentList}">
+            <td th:text="${student.name}">XXX</td>
+            <td th:text="${student.sex}">XX</td>
+            <td th:text="${student.age}">XX</td>
+            <td th:text="${student.hobby}">XXXX</td>
+            <td th:text="${student.college}">XXXXX</td>
+            <td th:text="${student.major}">XXXX</td>
+            <td>
+              <a th:href="@{/student/update/{studentId}(studentId=${student.id})}">修改</a>
+              <a th:href="@{/student/delete/{studentId}(studentId=${student.id})}">删除</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

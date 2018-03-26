@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="issf.zyp.task3.dao.StudentDao">
+  <resultMap id="BaseResultMap" type="issf.zyp.task3.domain.Student">
+    <result column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="age" property="age"/>
+    <result column="sex" property="sex"/>
+    <result column="hobby" property="hobby"/>
+    <result column="college_name" property="college"/>
+    <result column="major_name" property="major"/>
+  </resultMap>
+
+  <select id="findAllStudent" resultMap="BaseResultMap">
+    select * from issf.student
+  </select>
+
+  <select id="selectStudentById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from issf.student where id = #{id}
+  </select>
+
+  <update id="updateStudent" parameterType="issf.zyp.task3.domain.Student">
+    update issf.student set name = #{name},age = #{age},sex = #{sex},hobby = #{hobby},college_name = #{college},major_name = #{major} where id = #{id}
+  </update>
+
+  <delete id="deleteStudent" parameterType="java.lang.Integer">
+    delete from issf.student where id = #{id}
+  </delete>
+
+  <insert id="insertStudent" parameterType="issf.zyp.task3.domain.Student">
+    insert into issf.student value (#{id},#{name},#{age},#{sex},#{hobby},#{college},#{major})
+  </insert>
+</mapper>    
+    
