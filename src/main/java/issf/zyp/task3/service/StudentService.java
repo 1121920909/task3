@@ -7,6 +7,7 @@ import issf.zyp.task3.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -37,5 +38,14 @@ public class StudentService {
 
   public int deleteStudent(int id) {
     return stuDao.deleteStudent(id);
+  }
+
+  public Hashtable<Integer, char[]> getHobbyTable() {
+    List<Student> students = findAllStudent();
+    Hashtable<Integer, char[]> table = new Hashtable<>();
+    for (Student s : students) {
+      table.put(s.getId(), s.getHobby().toCharArray());
+    }
+    return table;
   }
 }

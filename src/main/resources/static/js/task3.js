@@ -54,8 +54,9 @@ function updateStudent() {
     var hobby = $("[name = 'hobby']");
     var college = $("#college");
     var major = $("#major");
-    student.name = name[0].value;
-    student.age = age[0].value;
+    student.name = name.val();
+    student.age = age.val();
+
     if (sex[0].checked) {
         student.sex = "男";
     }
@@ -65,19 +66,20 @@ function updateStudent() {
     for (var i = 0; i < hobby.length; i++){
         student.hobby  = "";
         if (hobby[i].checked) {
-            student.hobby += hobbyArray[i];
+            student.hobby += hobby[i].val();
         }
     }
-    student.college = collegeArray[college[0].selectedIndex];
-    student.major = majorArray[major[0].selectedOptions[0].value];
+
+    student.college = college.val();
+    student.major = major.val();
     $.ajax({
-        type:"post",
-        url:"./update",
-        data:{
+        type: "post",
+        url: "./update",
+        data: {
             "studentJson": JSON.stringify(student)
         },
-        error:function () {
+        error: function () {
             alert("ERROR");
         }
-    })
+    });
 }

@@ -1,5 +1,6 @@
 package issf.zyp.task3.control;
 
+import issf.zyp.task3.domain.Student;
 import issf.zyp.task3.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ZYP
  */
@@ -17,9 +21,21 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserControl {
   @Autowired
   private StudentService service;
+
   @RequestMapping(value = "/student",method = RequestMethod.GET)
   public String test(ModelMap map) {
-    map.addAttribute("studentList", service.findAllStudent());
+    List<Student> list = new ArrayList<>();
+    Student s = new Student();
+    s.setAge(11);
+    s.setCollege("213");
+    s.setHobby("0101");
+    s.setId(123);
+    s.setName("qe");
+    s.setSex("123");
+    list.add(s);
+    map.addAttribute("studentList", list);
+    //map.addAttribute("studentList", service.findAllStudent());
+    //map.addAttribute("hobbyMap", service.getHobbyTable());
     return "student_infor_thymeleaf";
   }
 
@@ -46,4 +62,5 @@ public class UserControl {
     service.insertStudent(studentJson);
     return "redirect:/student";
   }
+
 }

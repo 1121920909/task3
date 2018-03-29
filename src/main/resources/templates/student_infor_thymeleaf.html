@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8"/>
   <title>Title</title>
-  <link rel="stylesheet" th:href="@{css/bootstrap.css}"/>
-  <script th:src="@{js/jquery.js}"></script>
+  <link rel="stylesheet"th:href="@{css/bootstrap.css}"/>
+  <script th:src="@{js/jquery.js}" ></script>
   <script th:src="@{js/task3.js}"></script>
 </head>
 <body>
@@ -79,7 +79,7 @@
             </div>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary" onclick="addStudent()">添加学生信息</button>
+            <button class="btn btn-primary"onclick="addStudent()">添加学生信息</button>
             <button class="btn btn-warning">重置</button>
           </div>
         </form>
@@ -106,7 +106,7 @@
             <td th:text="${student.name}">XXX</td>
             <td th:text="${student.sex}">XX</td>
             <td th:text="${student.age}">XX</td>
-            <td th:text="${student.hobby}">XXXX</td>
+            <td th:text="(${student.hobby.charAt(0)}=='0'?'hhhh':'') + (${student.hobby.charAt(0)}=='0'?'hhhh':'')">XXXX</td>
             <td th:text="${student.college}">XXXXX</td>
             <td th:text="${student.major}">XXXX</td>
             <td>
